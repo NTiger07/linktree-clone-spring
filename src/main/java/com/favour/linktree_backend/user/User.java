@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document(collection = "linktree-users")
+@Document(collection = "users")
 public class User {
     @Id
     private String id;
