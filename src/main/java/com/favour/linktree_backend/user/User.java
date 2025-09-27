@@ -8,10 +8,10 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document(collection = "users")
+@Document(collection = "linktree-users")
 public class User {
     @Id
-    private Long id;
+    private String id;
     private String name;
     private String email;
     private String profilePic;
@@ -22,12 +22,104 @@ public class User {
     private String password;
 
 
+    // CONSTRUCTORS
+
+    public User(
+        String id,
+        String name,
+        String email,
+        String profilePic,
+        String about,
+        List<Social> socials,
+        List<Link> links,
+        String password
+    ) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.profilePic = profilePic;
+        this.about = about;
+        this.socials = socials;
+        this.links = links;
+        this.password = password;
+    }
+
+    public User(
+        String name,
+        String email,
+        String profilePic,
+        String about,
+        List<Social> socials,
+        List<Link> links,
+        String password
+    ) {
+        this.name = name;
+        this.email = email;
+        this.profilePic = profilePic;
+        this.about = about;
+        this.socials = socials;
+        this.links = links;
+        this.password = password;
+    }
+    
+    public User(
+        String id,
+        String name,
+        String email,
+        String profilePic,
+        String about,
+        List<Link> links,
+        String password
+    ) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.profilePic = profilePic;
+        this.about = about;
+        this.links = links;
+        this.password = password;
+    }
+
+    public User(
+        String id,
+        String name,
+        String email,
+        String profilePic,
+        String about,
+        List<Social> socials,
+        List<Link> links
+    ) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.profilePic = profilePic;
+        this.about = about;
+        this.socials = socials;
+        this.links = links;
+    }
+
+    public User(
+        String id,
+        String name,
+        String email,
+        String profilePic,
+        String about,
+        List<Link> links
+    ) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.profilePic = profilePic;
+        this.about = about;
+        this.links = links;
+    }
+
     // GETTERS AND SETTERS
 
-    public Long getId(){
+    public String getId(){
         return id;
     }
-    public void setId(Long id){
+    public void setId(String id){
         this.id = id;
     }
     public String getName(){

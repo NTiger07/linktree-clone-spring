@@ -2,15 +2,21 @@ package com.favour.linktree_backend.user;
 
 
 public class Social {
-    private String social;
+    private String platform;
     private String url;
 
-    // GETTERS AND SETTERS
-    public String getSocial(){
-        return social;
+    // CONSTRUCTOR
+    public Social(String platform, String url) {
+        this.platform = platform;
+        this.url = url;
     }
-    public void setSocial(String social){
-        this.social = social;
+
+    // GETTERS AND SETTERS
+    public String getPlatform(){
+        return platform;
+    }
+    public void setPlatform(String platform){
+        this.platform = platform;
     }
     public String getUrl(){
         return url;
