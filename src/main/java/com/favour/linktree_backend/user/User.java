@@ -3,13 +3,17 @@ package com.favour.linktree_backend.user;
 import java.util.List;
 // import jakarta.persistence.Id;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
+@Document(collection = "users")
 public class User {
-    // @Id
+    @Id
     private Long id;
     private String name;
+    private String email;
     private String profilePic;
     private String about;
     private List<Social> socials;
@@ -31,6 +35,12 @@ public class User {
     }
     public void setName(String name){
         this.name = name;
+    }
+    public String getEmail(){
+        return email;
+    }
+    public void setEmail(String email){
+        this.email = email;
     }
     public String getProfilePic(){
         return profilePic;
