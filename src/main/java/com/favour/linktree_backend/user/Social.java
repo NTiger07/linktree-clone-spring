@@ -6,6 +6,8 @@ public class Social {
     private String url;
 
     // CONSTRUCTOR
+    public Social() {}
+    
     public Social(String platform, String url) {
         this.platform = platform;
         this.url = url;

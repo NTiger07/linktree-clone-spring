@@ -7,6 +7,8 @@ public class Link {
     private int position;
 
     // CONSTRUCTORS
+    public Link() {}
+
     public Link(String id, String title, String url, int position) {
         this.id = id;
         this.title = title;
@@ -19,29 +21,35 @@ public class Link {
         this.url = url;
     }
 
-
     // GETTERS AND SETTERS
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
+
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
+
     public String getUrl() {
         return url;
     }
+
     public void setUrl(String url) {
         this.url = url;
     }
+
     public int getPosition() {
         return position;
     }
+
     public void setPosition(int position) {
         this.position = position;
     }
