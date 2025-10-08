@@ -4,10 +4,14 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class UserConfig {
         @SuppressWarnings("null")
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+
         @Bean
         CommandLineRunner commandLineRunner(UserRepository userRepository) {
                 return args -> {
@@ -23,7 +27,7 @@ public class UserConfig {
                                         List.of(
                                                         new Link("Portfolio", "https://favour.dev"),
                                                         new Link("Blog", "https://blog.favour.dev")),
-                                        "securepassword123");
+                                        passwordEncoder.encode("securepassword123"));
 
                         User ayishat = new User(
                                         "keks",
@@ -37,7 +41,7 @@ public class UserConfig {
                                         List.of(
                                                         new Link("Portfolio", "https://ayishat.dev"),
                                                         new Link("Blog", "https://blog.ayishat.dev")),
-                                        "securepassword123");
+                                        passwordEncoder.encode("securepassword123"));
 
                         userRepository.saveAll(List.of(favour, ayishat));
 

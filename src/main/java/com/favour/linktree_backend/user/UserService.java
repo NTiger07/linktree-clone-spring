@@ -5,15 +5,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 @SuppressWarnings("null")
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User createUser(User user) {
@@ -23,19 +26,21 @@ public class UserService {
         if (user.getEmail() != null && userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new IllegalStateException("Email taken");
         }
-        // You may want to hash the password before saving
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         return userRepository.save(user);
     }
 
-    public User getUserById(String userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException(
+    public User getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalStateException(
                 "User does not exist"));
         return user;
     }
 
     // Delete a single link from user's links by linkId
-    public User deleteUserLink(String userId, String linkId) {
-        User user = userRepository.findById(userId)
+    public User deleteUserLink(String username, String linkId) {
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException("User does not exist"));
         List<Link> links = user.getLinks();
         if (links != null) {
@@ -46,9 +51,9 @@ public class UserService {
     }
 
     // Update user info (username, name, email, profilePic, about, password)
-    public User updateUserInfo(String userId, String username, String name, String email, String profilePic,
+    public User updateUserInfo(String username, String name, String email, String profilePic,
             String about, String password) {
-        User user = userRepository.findById(userId)
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException("User does not exist"));
 
         if (username != null && !username.isEmpty() && !Objects.equals(user.getUsername(), username)) {
@@ -80,24 +85,23 @@ public class UserService {
         }
 
         if (password != null && !password.isEmpty()) {
-            // You may want to hash the password before saving
-            user.setPassword(password);
+            user.setPassword(passwordEncoder.encode(password));
         }
 
         return userRepository.save(user);
     }
 
     // Update user links
-    public User updateUserLinks(String userId, List<Link> links) {
-        User user = userRepository.findById(userId)
+    public User updateUserLinks(String username, List<Link> links) {
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException("User does not exist"));
         user.setLinks(links);
         return userRepository.save(user);
     }
 
     // Update user socials
-    public User updateUserSocials(String userId, List<Social> socials) {
-        User user = userRepository.findById(userId)
+    public User updateUserSocials(String username, List<Social> socials) {
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException("User does not exist"));
         user.setSocials(socials);
         return userRepository.save(user);

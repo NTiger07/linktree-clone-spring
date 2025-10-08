@@ -24,9 +24,9 @@ public class UserController {
         return "Successful handshake"; // delegates to service
     }
 
-    @GetMapping(path = "{userId}") // Get a single user by id
-    public User getUser(@PathVariable String userId) {
-        return userService.getUserById(userId);
+    @GetMapping(path = "{username}") // Get a single user by username
+    public User getUserByUsername(@PathVariable String username) {
+        return userService.getUserByUsername(username);
     }
 
     @PostMapping // Create a new user
@@ -34,31 +34,30 @@ public class UserController {
         return userService.createUser(user);
     }
 
-    @PostMapping(path = "{userId}/update-info") // Update user info
+    @PostMapping(path = "{username}/update-info") // Update user info
     public User updateUserInfo(
-            @PathVariable String userId,
-            @RequestParam(required = false) String username,
+            @PathVariable String username,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email,
             @RequestParam(required = false) String profilePic,
             @RequestParam(required = false) String about,
             @RequestParam(required = false) String password) {
-        return userService.updateUserInfo(userId, username, name, email, profilePic, about, password);
+        return userService.updateUserInfo(username, name, email, profilePic, about, password);
     }
 
-    @PostMapping(path = "{userId}/update-links") // Update user links
-    public User updateUserLinks(@PathVariable String userId, @RequestBody List<Link> links) {
-        return userService.updateUserLinks(userId, links);
+    @PostMapping(path = "{username}/update-links") // Update user links
+    public User updateUserLinks(@PathVariable String username, @RequestBody List<Link> links) {
+        return userService.updateUserLinks(username, links);
     }
 
-    @PostMapping(path = "{userId}/update-socials") // Update user socials
-    public User updateUserSocials(@PathVariable String userId, @RequestBody List<Social> socials) {
-        return userService.updateUserSocials(userId, socials);
+    @PostMapping(path = "{username}/update-socials") // Update user socials
+    public User updateUserSocials(@PathVariable String username, @RequestBody List<Social> socials) {
+        return userService.updateUserSocials(username, socials);
     }
 
-    @PostMapping(path = "{userId}/delete-link/{linkId}") // Delete a single link
-    public User deleteUserLink(@PathVariable String userId, @PathVariable String linkId) {
-        return userService.deleteUserLink(userId, linkId);
+    @PostMapping(path = "{username}/delete-link/{linkId}") // Delete a single link
+    public User deleteUserLink(@PathVariable String username, @PathVariable String linkId) {
+        return userService.deleteUserLink(username, linkId);
     }
 
 }

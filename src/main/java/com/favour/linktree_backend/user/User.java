@@ -1,14 +1,10 @@
 package com.favour.linktree_backend.user;
 
 import java.util.List;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
 public class User {
-    @Id
-    private String id;
     private String username;
     private String name;
     private String email;
@@ -16,7 +12,6 @@ public class User {
     private String about;
     private List<Social> socials;
     private List<Link> links;
-    @Transient
     private String password;
 
     // CONSTRUCTORS
@@ -24,27 +19,6 @@ public class User {
     }
 
     public User(
-            String id,
-            String username,
-            String name,
-            String email,
-            String profilePic,
-            String about,
-            List<Social> socials,
-            List<Link> links,
-            String password) {
-        this.id = id;
-        this.username = username;
-        this.name = name;
-        this.email = email;
-        this.profilePic = profilePic;
-        this.about = about;
-        this.socials = socials;
-        this.links = links;
-        this.password = password;
-    }
-
-    public User(
             String username,
             String name,
             String email,
@@ -64,7 +38,6 @@ public class User {
     }
 
     public User(
-            String id,
             String username,
             String name,
             String email,
@@ -72,7 +45,6 @@ public class User {
             String about,
             List<Link> links,
             String password) {
-        this.id = id;
         this.username = username;
         this.name = name;
         this.email = email;
@@ -83,7 +55,6 @@ public class User {
     }
 
     public User(
-            String id,
             String username,
             String name,
             String email,
@@ -91,7 +62,6 @@ public class User {
             String about,
             List<Social> socials,
             List<Link> links) {
-        this.id = id;
         this.username = username;
         this.name = name;
         this.email = email;
@@ -102,14 +72,12 @@ public class User {
     }
 
     public User(
-            String id,
             String username,
             String name,
             String email,
             String profilePic,
             String about,
             List<Link> links) {
-        this.id = id;
         this.username = username;
         this.name = name;
         this.email = email;
@@ -119,14 +87,6 @@ public class User {
     }
 
     // GETTERS AND SETTERS
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
