@@ -91,6 +91,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    // Update user profilePic
+    public User updateUserProfileImage(String username, String url) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalStateException("User does not exist"));
+        user.setProfilePic(url);
+        return userRepository.save(user);
+    }
+
     // Update user links
     public User updateUserLinks(String username, List<Link> links) {
         User user = userRepository.findByUsername(username)
