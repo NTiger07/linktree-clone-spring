@@ -21,11 +21,11 @@ public class RequestLoggingFilter extends OncePerRequestFilter {
         String uri = request.getRequestURI();
         String query = request.getQueryString() != null ? "?" + request.getQueryString() : "";
 
-        System.out.println("Start request" + method + " " + uri + query);
+        System.out.println("Start request " + method + " " + uri + query);
 
         // Continue the chain
         filterChain.doFilter(request, response);
 
-        System.out.println("End request" + method + " " + uri + " -> " + response.getStatus());
+        System.out.println("End request " + method + " " + uri + " -> " + response.getStatus());
     }
 }

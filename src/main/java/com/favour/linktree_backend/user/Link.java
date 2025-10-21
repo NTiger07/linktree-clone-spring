@@ -1,7 +1,11 @@
 package com.favour.linktree_backend.user;
 
+import org.springframework.data.annotation.Id;
+
 public class Link {
+    @Id
     private String id;
+    private String imageUrl;
     private String title;
     private String url;
     private int position;
@@ -9,8 +13,21 @@ public class Link {
     // CONSTRUCTORS
     public Link() {}
 
-    public Link(String id, String title, String url, int position) {
+    public Link(String id, String imageUrl, String title, String url, int position) {
         this.id = id;
+        this.imageUrl = imageUrl;
+        this.title = title;
+        this.url = url;
+        this.position = position;
+    }
+
+    public Link(String imageUrl, String title, String url) {
+        this.imageUrl = imageUrl;
+        this.title = title;
+        this.url = url;
+    }
+
+    public Link(String title, String url, int position) {
         this.title = title;
         this.url = url;
         this.position = position;
@@ -28,6 +45,14 @@ public class Link {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {
