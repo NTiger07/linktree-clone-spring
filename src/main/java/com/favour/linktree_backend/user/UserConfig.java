@@ -19,28 +19,28 @@ public class UserConfig {
                                         "favour",
                                         "Favour",
                                         "favour@example.com",
-                                        "https://example.com/profile.jpg",
+                                        "https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/avatars/avatar-dafault.png",
                                         "Software engineer and content creator.",
                                         List.of(
                                                         new Social("Twitter", "https://twitter.com/favour"),
                                                         new Social("LinkedIn", "https://linkedin.com/in/favour")),
                                         List.of(
-                                                        new Link("Portfolio", "https://favour.dev"),
-                                                        new Link("Blog", "https://blog.favour.dev")),
+                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Portfolio", "https://favour.dev"),
+                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Blog", "https://blog.favour.dev")),
                                         passwordEncoder.encode("securepassword123"));
 
                         User ayishat = new User(
                                         "keks",
                                         "Ayishat",
                                         "ayishat@example.com",
-                                        "https://example.com/profile.jpg",
+                                        "https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/avatars/avatar-dafault.png",
                                         "Writer and content creator.",
                                         List.of(
                                                         new Social("Twitter", "https://twitter.com/ayishat"),
                                                         new Social("LinkedIn", "https://linkedin.com/in/ayishat")),
                                         List.of(
-                                                        new Link("Portfolio", "https://ayishat.dev"),
-                                                        new Link("Blog", "https://blog.ayishat.dev")),
+                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Portfolio", "https://ayishat.dev"),
+                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Blog", "https://blog.ayishat.dev")),
                                         passwordEncoder.encode("securepassword123"));
 
                         userRepository.saveAll(List.of(favour, ayishat));

@@ -3,6 +3,7 @@ package com.favour.linktree_backend.user;
 import java.util.Objects;
 import java.util.List;
 import java.util.Optional;
+import java.util.Comparator;
 
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,6 +36,11 @@ public class UserService {
     public User getUserByUsername(String username) {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalStateException(
                 "User does not exist"));
+        List<Link> links = user.getLinks();
+        if (links != null) {
+            links.sort(Comparator.comparingInt(Link::getPosition));
+            user.setLinks(links);
+        }
         return user;
     }
 
@@ -45,8 +51,56 @@ public class UserService {
         List<Link> links = user.getLinks();
         if (links != null) {
             links.removeIf(link -> link.getId().equals(linkId));
+            links.sort(Comparator.comparingInt(Link::getPosition));
             user.setLinks(links);
         }
+        return userRepository.save(user);
+    }
+
+    // Update a single link
+    public User updateUserLink(String username, String linkId, Link updatedLink) {
+        if (updatedLink == null) {
+            throw new IllegalArgumentException("Updated link must not be null");
+        }
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalStateException("User does not exist"));
+
+        List<Link> links = user.getLinks();
+        if (links == null || links.isEmpty()) {
+            throw new IllegalStateException("No links to update");
+        }
+
+        boolean replaced = false;
+        for (int i = 0; i < links.size(); i++) {
+            Link current = links.get(i);
+            if (current != null && current.getId().equals(linkId)) {
+                updatedLink.setId(linkId);
+                if (updatedLink.getPosition() == 0) {
+                    updatedLink.setPosition(current.getPosition());
+                }
+                if (updatedLink.getTitle() == null) {
+                    updatedLink.setTitle(current.getTitle());
+                }
+                if (updatedLink.getUrl() == null) {
+                    updatedLink.setUrl(current.getUrl());
+                }
+                if (updatedLink.getImageUrl() == null) {
+                    updatedLink.setImageUrl(current.getImageUrl());
+                }
+
+                links.set(i, updatedLink);
+                replaced = true;
+                break;
+            }
+        }
+
+        if (!replaced) {
+            throw new IllegalStateException("Link does not exist");
+        }
+
+        links.sort(Comparator.comparingInt(Link::getPosition));
+        user.setLinks(links);
         return userRepository.save(user);
     }
 
@@ -103,6 +157,9 @@ public class UserService {
     public User updateUserLinks(String username, List<Link> links) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException("User does not exist"));
+        if (links != null) {
+            links.sort(Comparator.comparingInt(Link::getPosition));
+        }
         user.setLinks(links);
         return userRepository.save(user);
     }

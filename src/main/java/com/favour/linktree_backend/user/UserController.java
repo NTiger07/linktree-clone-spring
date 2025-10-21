@@ -58,6 +58,12 @@ public class UserController {
         return userService.updateUserLinks(username, links);
     }
 
+    @PutMapping("{username}/update-link/{linkId}") // Update single link
+    public User updateUserLink(@PathVariable String username, @PathVariable String linkId, 
+            @RequestBody Link updatedLink) {
+        return userService.updateUserLink(username, linkId, updatedLink);
+    }
+
     @PutMapping(path = "{username}/update-socials") // Update user socials
     public User updateUserSocials(@PathVariable String username, @RequestBody List<Social> socials) {
         return userService.updateUserSocials(username, socials);
@@ -69,7 +75,7 @@ public class UserController {
     }
 
     @PutMapping(path = "{username}/upload-profile-picture")
-    public User uploadProfilePicture(@PathVariable String username, @RequestParam("file") MultipartFile file)
+    public User uploadProfilePicture(@PathVariable String username, @RequestParam MultipartFile file)
             throws IOException {
         String fileName = "avatars/" + UUID.randomUUID() + "-" + file.getOriginalFilename();
         String url = supabaseStorageService.uploadFile(file.getBytes(), fileName, file.getContentType());
