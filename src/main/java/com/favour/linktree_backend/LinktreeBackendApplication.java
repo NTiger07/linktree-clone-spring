@@ -8,7 +8,7 @@ public class LinktreeBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LinktreeBackendApplication.class, args);
-		System.out.println("Server started on port 8080");
+		System.out.println("Server started on port 8081");
 	}
 
 }
