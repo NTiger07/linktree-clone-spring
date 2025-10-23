@@ -25,8 +25,8 @@ public class UserConfig {
                                                         new Social("Twitter", "https://twitter.com/favour"),
                                                         new Social("LinkedIn", "https://linkedin.com/in/favour")),
                                         List.of(
-                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Portfolio", "https://favour.dev", true),
-                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Blog", "https://blog.favour.dev", true)),
+                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Portfolio", "https://favour.dev", 1, true),
+                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Blog", "https://blog.favour.dev", 2, true)),
                                         passwordEncoder.encode("securepassword123"));
 
                         User ayishat = new User(
@@ -39,8 +39,8 @@ public class UserConfig {
                                                         new Social("Twitter", "https://twitter.com/ayishat"),
                                                         new Social("LinkedIn", "https://linkedin.com/in/ayishat")),
                                         List.of(
-                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Portfolio", "https://ayishat.dev", true),
-                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Blog", "https://blog.ayishat.dev", true)),
+                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Portfolio", "https://ayishat.dev", 1, true),
+                                                        new Link("https://vwzciaaeijiwhnvlfzni.supabase.co/storage/v1/object/public/user-avatars/link-images/link-default.png", "Blog", "https://blog.ayishat.dev", 2, true)),
                                         passwordEncoder.encode("securepassword123"));
 
                         userRepository.saveAll(List.of(favour, ayishat));

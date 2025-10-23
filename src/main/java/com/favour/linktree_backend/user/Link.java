@@ -23,10 +23,11 @@ public class Link {
         this.isActive = isActive;
     }
 
-    public Link(String imageUrl, String title, String url, boolean isActive) {
+    public Link(String imageUrl, String title, String url, int position, boolean isActive) {
         this.imageUrl = imageUrl;
         this.title = title;
         this.url = url;
+        this.position = position;
         this.isActive = isActive;
     }
 
