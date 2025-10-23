@@ -9,33 +9,38 @@ public class Link {
     private String title;
     private String url;
     private int position;
+    private boolean isActive;
 
     // CONSTRUCTORS
     public Link() {}
 
-    public Link(String id, String imageUrl, String title, String url, int position) {
+    public Link(String id, String imageUrl, String title, String url, int position, boolean isActive) {
         this.id = id;
         this.imageUrl = imageUrl;
         this.title = title;
         this.url = url;
         this.position = position;
+        this.isActive = isActive;
     }
 
-    public Link(String imageUrl, String title, String url) {
+    public Link(String imageUrl, String title, String url, boolean isActive) {
         this.imageUrl = imageUrl;
         this.title = title;
         this.url = url;
+        this.isActive = isActive;
     }
 
-    public Link(String title, String url, int position) {
+    public Link(String title, String url, int position, boolean isActive) {
         this.title = title;
         this.url = url;
         this.position = position;
+        this.isActive = isActive;
     }
 
-    public Link(String title, String url) {
+    public Link(String title, String url, boolean isActive) {
         this.title = title;
         this.url = url;
+        this.isActive = isActive;
     }
 
     // GETTERS AND SETTERS
@@ -77,5 +82,13 @@ public class Link {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 }
